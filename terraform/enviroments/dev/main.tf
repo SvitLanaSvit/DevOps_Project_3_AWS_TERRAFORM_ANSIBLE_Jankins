@@ -67,3 +67,13 @@ module "ec2" {
   public_key_content = var.public_key_content
   common_tags = local.common_tags
 }
+
+resource "aws_key_pair" "ansible" {
+  key_name   = "ansible-key"
+  public_key = var.public_key_content
+}
+
+resource "local_file" "ansible_inventory" {
+  content  = data.template_file.ansible_inventory.rendered
+  filename = "${path.module}/ansible_hosts"
+}

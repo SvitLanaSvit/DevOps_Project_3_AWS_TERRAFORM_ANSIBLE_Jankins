@@ -21,6 +21,15 @@ resource "aws_security_group" "public_ec2" {
     protocol    = "tcp"
     cidr_blocks = [var.jenkins_allowed_cidr]
   }
+  
+  # Правила вхідного трафіку для HTTP
+  ingress {
+    description = "HTTP access to nginx"
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
 
   # Правила вихідного трафіку для публічного EC2 (Jump Host/Jenkins)
   egress {
