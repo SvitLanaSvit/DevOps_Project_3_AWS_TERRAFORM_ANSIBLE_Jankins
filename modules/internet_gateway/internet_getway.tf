@@ -1,0 +1,31 @@
+# ========================================
+# INTERNET GATEWAY & PUBLIC ROUTING
+# ========================================
+# Цей файл містить ресурси для Internet Gateway та публічної маршрутизації
+
+# Internet Gateway для публічного доступу
+resource "aws_internet_gateway" "igw" {
+  vpc_id = var.vpc_id
+  tags = {
+    Name = "${var.igw_name}-igw"
+  }
+}
+
+# Route Table для публічної підмережі
+resource "aws_route_table" "public" {
+  vpc_id = var.vpc_id
+
+  route {
+    cidr_block = "0.0.0.0/0"
+    gateway_id = aws_internet_gateway.igw.id
+  }
+
+  tags = {
+    Name = "${var.public_route_table_name}-public-rt"
+  }
+}
+
+resource "aws_route_table_association" "public" {
+  subnet_id      = var.public_subnet_id
+  route_table_id = aws_route_table.public.id
+}
