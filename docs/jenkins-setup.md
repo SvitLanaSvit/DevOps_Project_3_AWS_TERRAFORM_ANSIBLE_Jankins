@@ -219,7 +219,7 @@ pipeline {
 
 Натисніть **"Build Now"**
 
-![Build Now](../Screens/Step_4_job_pipeline_start_5.png)
+![Build Now](../Screens/step_4_job_pipeline_start_5.png)
 
 ### 6.2 Моніторинг виконання
 
