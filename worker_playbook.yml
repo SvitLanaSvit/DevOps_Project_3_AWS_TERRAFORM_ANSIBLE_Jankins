@@ -1,0 +1,41 @@
+---
+- name: Prepare Jenkins worker node
+  hosts: worker
+  become: yes
+
+  tasks:
+
+    - name: Install required Java (OpenJDK 21)
+      apt:
+        name:
+          - fontconfig
+          - openjdk-21-jre
+        state: present
+        update_cache: yes
+
+    - name: Ensure SSH key for Jenkins master is present
+      authorized_key:
+        user: ubuntu
+        state: present
+        key: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
+
+    - name: Install Docker
+      apt:
+        name:
+          - docker.io
+        state: present
+        update_cache: yes
+
+    - name: Add user ubuntu to docker group
+      user:
+        name: ubuntu
+        groups: docker
+        append: yes
+
+    - name: Install Node.js (latest LTS)
+      apt:
+        name:
+          - nodejs
+          - npm
+        state: present
+        update_cache: yes

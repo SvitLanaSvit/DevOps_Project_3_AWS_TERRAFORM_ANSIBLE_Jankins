@@ -90,3 +90,8 @@ variable "jenkins_allowed_cidr" {
   type        = string
   description = "CIDR block allowed for Jenkins Web UI access"
 }
+
+variable "master_private_ip_cidr" {
+  type        = string
+  description = "CIDR block of Jenkins master private IP for SSH access to worker."
+}

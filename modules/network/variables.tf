@@ -29,3 +29,8 @@ variable "common_tags" {
   description = "Common tags for resources"
   default = {}
 }
+
+variable "master_private_ip_cidr" {
+  description = "CIDR block of Jenkins master private IP for SSH access to worker."
+  type        = string
+}

@@ -86,6 +86,15 @@
       file:
         path: /etc/nginx/sites-enabled/default
         state: absent
+
+    - name: Get Jenkins initial admin password
+      become: yes
+      shell: cat /var/lib/jenkins/secrets/initialAdminPassword
+      register: jenkins_password
+
+    - name: Show Jenkins initial admin password
+      debug:
+        msg: "Jenkins initial admin password: {{ jenkins_password.stdout }}"
   handlers:
     - name: Reload nginx
       systemd:

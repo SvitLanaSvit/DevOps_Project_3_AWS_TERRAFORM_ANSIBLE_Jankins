@@ -52,6 +52,7 @@ module "network" {
   jenkins_allowed_cidr = var.jenkins_allowed_cidr
   public_subnet_cidr = var.public_subnet_cidr
   common_tags = local.common_tags
+  master_private_ip_cidr = var.master_private_ip_cidr
 }
 
 module "ec2" {

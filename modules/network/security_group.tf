@@ -13,15 +13,6 @@ resource "aws_security_group" "public_ec2" {
     cidr_blocks = [var.ssh_allowed_cidr]
   }
 
-  # Правила вхідного трафіку для Jenkins Web UI
-  ingress {
-    description = "Jenkins Web UI"
-    from_port   = 8080
-    to_port     = 8080
-    protocol    = "tcp"
-    cidr_blocks = [var.jenkins_allowed_cidr]
-  }
-  
   # Правила вхідного трафіку для HTTP
   ingress {
     description = "HTTP access to nginx"
@@ -32,13 +23,21 @@ resource "aws_security_group" "public_ec2" {
   }
 
   # Правила вихідного трафіку для публічного EC2 (Jump Host/Jenkins)
-  egress {
-    description = "All outbound traffic"
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
+   ingress {
+     description      = "SSH from Public Subnet (Jump Host)"
+     from_port        = 22
+     to_port          = 22
+     protocol         = "tcp"
+     cidr_blocks      = ["10.0.1.0/24"]
+   }
+
+   ingress {
+     description      = "SSH from Jenkins master private IP"
+     from_port        = 22
+     to_port          = 22
+     protocol         = "tcp"
+     cidr_blocks      = [var.master_private_ip_cidr]
+   }
 
   tags = merge(var.common_tags, {
     Name = "${var.resource_name}-public-sg"
