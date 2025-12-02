@@ -43,7 +43,7 @@
 1. Перейдіть до **"Manage Jenkins"**
 2. Оберіть **"Nodes"**
 
-![Nodes](Screens/step_1_node_jenkins_worker_1.png)
+![Nodes](../Screens/step_1_node_jenkins_worker_1.png)
 
 #### 3.4.2 Створення нового Node
 
@@ -51,7 +51,7 @@
 2. Введіть назву: `worker-node`
 3. Оберіть **"Permanent Agent"**
 
-![New Node](Screens/step_1_node_jenkins_worker_2.png)
+![New Node](../Screens/step_1_node_jenkins_worker_2.png)
 
 #### 3.4.3 Налаштування Worker Node
 
@@ -64,7 +64,7 @@
 - **Usage**: `Use this node as much as possible`
 - **Launch method**: `Launch agents via SSH`
 
-![Node Configuration](Screens/step_1_node_jenkins_worker_3.png)
+![Node Configuration](../Screens/step_1_node_jenkins_worker_3.png)
 
 #### 3.4.4 SSH налаштування
 
@@ -72,7 +72,7 @@
 - **Credentials**: створіть нові (див. наступний крок)
 - **Host Key Verification Strategy**: `Non verifying Verification Strategy`
 
-![Node Configuration](Screens/step_1_node_jenkins_worker_4.png)
+![Node Configuration](../Screens/step_1_node_jenkins_worker_4.png)
 
 #### 3.4.5 Створення SSH Credentials
 
@@ -85,9 +85,9 @@
 
 Після створення credentials — збережіть налаштування та перевірте логи Jenkins (Manage Jenkins → System Log), щоб переконатися, що worker-node успішно підключився через SSH.
 
-![Node Configuration](Screens/step_1_node_jenkins_worker_credentials_5.1.png)
-![Node Configuration](Screens/step_1_node_jenkins_worker_credentials_5.2.png)
-![LOGS](Screens/step_1_node_jenkins_worker_logs_5.3.png)
+![Node Configuration](../Screens/step_1_node_jenkins_worker_credentials_5.1.png)
+![Node Configuration](../Screens/step_1_node_jenkins_worker_credentials_5.2.png)
+![LOGS](../Screens/step_1_node_jenkins_worker_logs_5.3.png)
 
 ## 🐳 4: Налаштування Docker Hub
 
@@ -99,10 +99,10 @@
 4. **Access permissions**: `Read, Write, Delete`
 5. **Generate** і збережіть токен
 
-![Docker Hub Token](Screens/step_2_docker_hub_access_token_1.png)
-![Docker Hub Token](Screens/step_2_docker_hub_access_token_2.png)
-![Docker Hub Token](Screens/step_2_docker_hub_access_token_3.png)
-![Docker Hub Token](Screens/step_2_docker_hub_access_token_4.png)
+![Docker Hub Token](../Screens/step_2_docker_hub_access_token_1.png)
+![Docker Hub Token](../Screens/step_2_docker_hub_access_token_2.png)
+![Docker Hub Token](../Screens/step_2_docker_hub_access_token_3.png)
+![Docker Hub Token](../Screens/step_2_docker_hub_access_token_4.png)
 
 ### 4.2 Додавання Docker Hub Credentials
 
@@ -113,7 +113,7 @@
 5. **Password**: згенерований токен
 6. **ID**: `dockerhub-credentials`
 
-![Docker Credentials](Screens/step_3_credential_Docker_Hub.png)
+![Docker Credentials](../Screens/step_3_credential_Docker_Hub.png)
 
 ## 📝 5: Створення Pipeline
 
@@ -123,9 +123,9 @@
 2. **Name**: `nodejs-docker-pipeline`
 3. **Type**: `Pipeline`
 
-![New Pipeline](Screens/step_4_job_create_1.png)
-![New Pipeline](Screens/step_4_job_create_2.png)
-![New Pipeline](Screens/step_4_job_create_3.png)
+![New Pipeline](../Screens/step_4_job_create_1.png)
+![New Pipeline](../Screens/step_4_job_create_2.png)
+![New Pipeline](../Screens/step_4_job_create_3.png)
 
 ### 5.2 Налаштування Pipeline
 
@@ -209,7 +209,7 @@ pipeline {
 }
 ```
 
-![Pipeline Script](Screens/step_4_job_pipeline_code_4.png)
+![Pipeline Script](../Screens/step_4_job_pipeline_code_4.png)
 
 **Не забудьте змінити `your-username` на ваш Docker Hub username!**
 
@@ -219,7 +219,7 @@ pipeline {
 
 Натисніть **"Build Now"**
 
-![Build Now](screens/Step_4_job_pipeline_start_5.png)
+![Build Now](../Screens/Step_4_job_pipeline_start_5.png)
 
 ### 6.2 Моніторинг виконання
 
@@ -234,7 +234,7 @@ Pipeline складається з 4 етапів:
 
 Натисніть на будь-який етап для перегляду детальних логів:
 
-![Pipeline Logs](Screens/step_5_pipeline_2.png)
+![Pipeline Logs](../Screens/step_5_pipeline_2.png)
 
 ### 6.4 Успішний результат
 
@@ -296,6 +296,6 @@ Pipeline completed successfully!
 Finished: SUCCESS
 ```
 
-![Successful Tests](Screens/step_5_pipeline_tests_3.png)
-![Successful Build](Screens/step_5_pipeline_success_4.png)
-![Successful Build](Screens/step_5_pipeline_result_5.png)
+![Successful Tests](../Screens/step_5_pipeline_tests_3.png)
+![Successful Build](../Screens/step_5_pipeline_success_4.png)
+![Successful Build](../Screens/step_5_pipeline_result_5.png)

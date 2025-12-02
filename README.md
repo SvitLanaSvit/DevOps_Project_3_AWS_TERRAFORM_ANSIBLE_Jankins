@@ -296,6 +296,12 @@ chmod 600 ~/.ssh/id_rsa
 ### 2️⃣ Перевірка SSH підключення
 ```bash
 ssh -i ~/.ssh/id_rsa ubuntu@<PUBLIC_IP>
+
+Або для підключення до приватного worker через jump host:
+```bash
+ssh -i ~/.ssh/id_rsa -o ProxyCommand="ssh -i ~/.ssh/id_rsa -W %h:%p ubuntu@<PUBLIC_IP>" ubuntu@<PRIVATE_IP>
+```
+Де `<PUBLIC_IP>` — IP master (jump host), `<PRIVATE_IP>` — IP worker.
 ```
 
 ### 3️⃣ Ansible inventory шаблон
